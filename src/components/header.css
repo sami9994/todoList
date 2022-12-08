@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inspiration&family=Raleway:ital,wght@0,900;1,600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.header {
+  background-color: rgb(209, 58, 58);
+  height: 15vh;
+  text-align: center;
+  font-family: 'Inspiration', cursive;
+  font-family: 'Raleway', sans-serif;
+  color: var(--primary-color);
+} /*# sourceMappingURL=header.css.map */
