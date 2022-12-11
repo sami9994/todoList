@@ -1,0 +1,36 @@
+.item {
+  font-size: 16px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  margin: 2px auto;
+  padding: 4px;
+  .task-title {
+    color: var(--primary-color);
+    font-family: var(--inspiration-font-family);
+  }
+  .task-content {
+    color: var(--orange-color);
+  }
+  .input-btn {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+
+    align-self: flex-end;
+    .content-btn {
+      background-color: transparent;
+      border: solid 1px var(--orange-color);
+      color: var(--orange-color);
+      cursor: pointer;
+      min-width: min-content;
+      width: 4em;
+      max-width: 60px;
+    }
+    .checkbox-input {
+      accent-color: var(--orange-color);
+      color: white;
+    }
+  }
+}

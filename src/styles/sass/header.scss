@@ -14,10 +14,11 @@
   );
   height: 10vh;
   text-align: center;
-  font-family: 'Inspiration', cursive;
-  font-family: 'Raleway', sans-serif;
+  font-family: var(--inspiration-font-family);
+
   color: var(--primary-color);
-  h1 {
+  .app-header {
     padding-top: 0.3em;
+    letter-spacing: 2px;
   }
 } /*# sourceMappingURL=header.css.map */
