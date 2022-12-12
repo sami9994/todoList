@@ -14,7 +14,11 @@
   font-family: var(--inspiration-font-family);
 }
 .item .task-content {
-  color: var(--orange-color);
+  color: var(--secondary-color);
+  text-transform: capitalize;
+  min-width: 10ch;
+  width: 40ch;
+  max-width: 45ch;
 }
 .item .input-btns {
   display: grid;
