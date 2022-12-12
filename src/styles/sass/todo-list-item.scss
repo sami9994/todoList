@@ -8,25 +8,58 @@
   margin: 2px auto;
   padding: 4px;
   .task-title {
-    color: var(--primary-color);
+    color: var(--orange-color);
+    font-size: xx-large;
     font-family: var(--inspiration-font-family);
   }
   .task-content {
     color: var(--orange-color);
   }
-  .input-btn {
+  .input-btns {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 2.5fr 0.5fr;
 
-    align-self: flex-end;
-    .content-btn {
-      background-color: transparent;
-      border: solid 1px var(--orange-color);
-      color: var(--orange-color);
-      cursor: pointer;
-      min-width: min-content;
-      width: 4em;
-      max-width: 60px;
+    .section-btn {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      justify-content: space-between;
+      height: 2em;
+      .content-btn {
+        background-color: transparent;
+        border: solid 1px var(--orange-color);
+        border-radius: 5px;
+        color: var(--orange-color);
+        cursor: pointer;
+        min-width: min-content;
+        width: 4em;
+        max-width: 70px;
+
+        transition: var(--transition);
+      }
+      .content-btn:hover {
+        background-color: var(--orange-color);
+
+        color: var(--primary-color);
+      }
+      .delete-btn {
+        background-color: transparent;
+        border: solid 1px var(--red-color);
+        color: var(--red-color);
+
+        cursor: pointer;
+        min-width: min-content;
+        width: 4em;
+
+        max-width: 60px;
+        border-radius: 5px;
+        transition: var(--transition);
+      }
+      .delete-btn:hover {
+        background-color: var(--red-color);
+
+        color: var(--primary-color);
+      }
     }
     .checkbox-input {
       accent-color: var(--orange-color);

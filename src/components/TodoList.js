@@ -13,7 +13,11 @@ const TodoList = () => {
   const [tasks, setTasks] = useState(tasksList)
   const handleSubmit = (e) => {
     e.preventDefault()
-    setTasks((prev) => [task, ...prev])
+    if (task.content && task.title) {
+      setTasks((prev) => [task, ...prev])
+      setTask({ id: uuidv4(), title: '', content: '', done: false })
+    } else window.alert('please provide all fields')
+    return
   }
   const handleChange = ({ target }) => {
     const { name, value } = target
@@ -31,7 +35,10 @@ const TodoList = () => {
     })
     setTasks(newTasks)
   }
-
+  const deleteTask = (id) => {
+    const newTasks = tasks.filter((item) => id !== item.id)
+    setTasks(newTasks)
+  }
   return (
     <>
       <section className='new-task-section'>
@@ -45,6 +52,10 @@ const TodoList = () => {
                 name='title'
                 className='todo-list-input'
                 placeholder='New Task Title'
+                minLength='3'
+                maxLength='20'
+                value={task.title}
+                required
                 onChange={handleChange}
               />
             </label>
@@ -53,6 +64,10 @@ const TodoList = () => {
                 type='text'
                 id='taskContent'
                 name='content'
+                minLength='3'
+                maxLength='50'
+                value={task.content}
+                required
                 className='todo-list-input'
                 placeholder='New Task Content'
                 onChange={handleChange}
@@ -72,6 +87,7 @@ const TodoList = () => {
                 task={listItem}
                 key={listItem.id}
                 checkBoxToggle={checkBoxToggle}
+                deleteTask={deleteTask}
               />
             )
           })}
