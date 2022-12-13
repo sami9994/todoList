@@ -2,7 +2,8 @@ import '../styles/css/todoListBody.css'
 import tasksList from '../data'
 import { v4 as uuidv4 } from 'uuid'
 import TodoListItem from './TodoListItem'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import Modal from './Modal'
 const TodoList = () => {
   const [task, setTask] = useState({
     id: uuidv4(),
@@ -11,6 +12,8 @@ const TodoList = () => {
     done: false,
   })
   const [tasks, setTasks] = useState(tasksList)
+  const [modal, setModal] = useState(false)
+  const [customId, setCustomId] = useState('')
   const handleSubmit = (e) => {
     e.preventDefault()
     if (task.content && task.title) {
@@ -39,6 +42,11 @@ const TodoList = () => {
     const newTasks = tasks.filter((item) => id !== item.id)
     setTasks(newTasks)
   }
+  const editModal = (id) => {
+    console.log(id)
+    setModal((prev) => true)
+  }
+
   return (
     <>
       <section className='new-task-section'>
@@ -88,10 +96,12 @@ const TodoList = () => {
                 key={listItem.id}
                 checkBoxToggle={checkBoxToggle}
                 deleteTask={deleteTask}
+                editModal={editModal}
               />
             )
           })}
         </section>
+        <Modal modal={modal} setModal={setModal} />
       </div>
     </>
   )

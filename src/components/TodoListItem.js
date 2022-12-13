@@ -1,5 +1,5 @@
 import '../styles/css/todo-list-item.css'
-const TodoListItems = ({ task, checkBoxToggle, deleteTask }) => {
+const TodoListItems = ({ task, checkBoxToggle, deleteTask, editModal }) => {
   return (
     <div className='item'>
       <section>
@@ -13,7 +13,9 @@ const TodoListItems = ({ task, checkBoxToggle, deleteTask }) => {
       </section>
       <section className='input-btns'>
         <section className='section-btn'>
-          <button className='content-btn'>Edit</button>
+          <button className='content-btn' onClick={() => editModal(task.id)}>
+            Edit
+          </button>
           <button className='delete-btn' onClick={() => deleteTask(task.id)}>
             Delete
           </button>
