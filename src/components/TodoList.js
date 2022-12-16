@@ -2,7 +2,7 @@ import '../styles/css/todoListBody.css'
 import tasksList from '../data'
 import { v4 as uuidv4 } from 'uuid'
 import TodoListItem from './TodoListItem'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Modal from './Modal'
 const TodoList = () => {
   const [task, setTask] = useState({
@@ -13,7 +13,8 @@ const TodoList = () => {
   })
   const [tasks, setTasks] = useState(tasksList)
   const [modal, setModal] = useState(false)
-  const [customId, setCustomId] = useState('')
+  const [taskToEdit, setTaskToEdit] = useState('')
+
   const handleSubmit = (e) => {
     e.preventDefault()
     if (task.content && task.title) {
@@ -22,10 +23,32 @@ const TodoList = () => {
     } else window.alert('please provide all fields')
     return
   }
+  const handleEditSubmit = (e) => {
+    e.preventDefault()
+    if (taskToEdit.content && taskToEdit.title) {
+      const newTasks = tasks.map((item) => {
+        if (item.id === taskToEdit.id) {
+          item.title = taskToEdit.title
+          item.content = taskToEdit.content
+        }
+        return item
+      })
+      setTasks(newTasks)
+      setTaskToEdit((prev) => ({ ...prev, title: '', content: '' }))
+      setModal(false)
+    } else window.alert('please provide all fields')
+    return
+  }
   const handleChange = ({ target }) => {
     const { name, value } = target
 
     setTask((prev) => ({ ...prev, [name]: value }))
+  }
+  const handleEditChange = ({ target }) => {
+    const { name, value } = target
+
+    setTaskToEdit((prev) => ({ ...prev, [name]: value }))
+    console.log(taskToEdit)
   }
 
   const checkBoxToggle = (id) => {
@@ -44,11 +67,21 @@ const TodoList = () => {
   }
   const editModal = (id) => {
     console.log(id)
-    setModal((prev) => true)
+    setModal(true)
+    const tempTask = tasks.filter((item) => item.id === id)
+
+    setTaskToEdit(tempTask[0])
   }
 
   return (
     <>
+      <Modal
+        modal={modal}
+        setModal={setModal}
+        task={taskToEdit}
+        handleEditChange={handleEditChange}
+        handleSubmit={handleEditSubmit}
+      />
       <section className='new-task-section'>
         <h6 className='body-title'>Add New Task</h6>
         <form className='form-content'>
@@ -101,7 +134,6 @@ const TodoList = () => {
             )
           })}
         </section>
-        <Modal modal={modal} setModal={setModal} />
       </div>
     </>
   )

@@ -63,15 +63,14 @@
     .todo-list-input {
       border: none;
       border-bottom: 2px solid var(--orange-color);
+      outline: none;
       min-height: 16px;
       height: 1.5em;
       max-height: 32px;
 
       width: 90%;
     }
-    .todo-list-input:focus {
-      outline: none;
-    }
+
     .todo-list-input::placeholder {
       padding-left: 0.2em;
       color: var(--orange-color);
