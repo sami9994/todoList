@@ -37,6 +37,7 @@
   float: right;
   font-size: 28px;
   font-weight: bold;
+  transition: var(--transition);
 }
 
 .close:hover,
@@ -46,7 +47,7 @@
 }
 
 .edit-form-content {
-  width: 70%;
+  width: 80%;
   margin: 4px auto;
   display: flex;
   flex-direction: column;

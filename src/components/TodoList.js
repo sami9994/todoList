@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import TodoListItem from './TodoListItem'
 import { useState } from 'react'
 import Modal from './Modal'
-const TodoList = () => {
+const TodoList = ({ isLoggedIn }) => {
   const [task, setTask] = useState({
     id: uuidv4(),
     title: '',
@@ -14,7 +14,6 @@ const TodoList = () => {
   const [tasks, setTasks] = useState(tasksList)
   const [modal, setModal] = useState(false)
   const [taskToEdit, setTaskToEdit] = useState('')
-
   const handleSubmit = (e) => {
     e.preventDefault()
     if (task.content && task.title) {
@@ -120,20 +119,25 @@ const TodoList = () => {
           </button>
         </form>
       </section>
+
       <div className='todo-list-body'>
-        <section className='todo-list-items'>
-          {tasks.map((listItem) => {
-            return (
-              <TodoListItem
-                task={listItem}
-                key={listItem.id}
-                checkBoxToggle={checkBoxToggle}
-                deleteTask={deleteTask}
-                editModal={editModal}
-              />
-            )
-          })}
-        </section>
+        {tasks.length > 0 ? (
+          <section className='todo-list-items'>
+            {tasks.map((listItem) => {
+              return (
+                <TodoListItem
+                  task={listItem}
+                  key={listItem.id}
+                  checkBoxToggle={checkBoxToggle}
+                  deleteTask={deleteTask}
+                  editModal={editModal}
+                />
+              )
+            })}
+          </section>
+        ) : (
+          <h1>There are nothing </h1>
+        )}
       </div>
     </>
   )
