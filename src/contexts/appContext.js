@@ -5,6 +5,7 @@ const AppContext = React.createContext()
 const AppProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userName, setUserName] = useState('')
+  const [userId, setUserId] = useState('')
   const provider = new GoogleAuthProvider()
   const signIn = () =>
     signInWithPopup(auth, provider)
@@ -16,6 +17,7 @@ const AppProvider = ({ children }) => {
         if (user.displayName) {
           setUserName(user.displayName)
           setIsLoggedIn(true)
+          setUserId(user.uid)
         }
       })
       .catch((error) => {
@@ -37,7 +39,7 @@ const AppProvider = ({ children }) => {
       })
   return (
     <AppContext.Provider
-      value={{ isLoggedIn, setIsLoggedIn, signout, signIn, userName }}
+      value={{ isLoggedIn, setIsLoggedIn, signout, signIn, userName, userId }}
     >
       {children}
     </AppContext.Provider>
