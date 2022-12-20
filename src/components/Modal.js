@@ -1,8 +1,11 @@
 import '../styles/css/modal.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
+import { useTodoListContext } from '../contexts/todoListContext'
 
-const Modal = ({ modal, setModal, task, handleEditChange, handleSubmit }) => {
+const Modal = () => {
+  const { modal, setModal, taskToEdit, handleEditChange, handleEditSubmit } =
+    useTodoListContext()
   return (
     <div className='modal' style={{ display: `${modal ? 'block' : 'none'}` }}>
       <FontAwesomeIcon
@@ -23,9 +26,9 @@ const Modal = ({ modal, setModal, task, handleEditChange, handleSubmit }) => {
                 placeholder='Edit Task Title'
                 minLength='3'
                 maxLength='20'
-                value={task.title}
+                value={taskToEdit.title}
                 required
-                onChange={(e) => handleEditChange(e, task)}
+                onChange={(e) => handleEditChange(e, taskToEdit)}
               />
             </label>
             <label htmlFor='task'>
@@ -38,12 +41,12 @@ const Modal = ({ modal, setModal, task, handleEditChange, handleSubmit }) => {
                 required
                 className='edit-input'
                 placeholder='Edit Task Content'
-                value={task.content}
-                onChange={(e) => handleEditChange(e, task)}
+                value={taskToEdit.content}
+                onChange={(e) => handleEditChange(e, taskToEdit)}
               />
             </label>
           </section>
-          <button className='edit-btn' type='submit' onClick={handleSubmit}>
+          <button className='edit-btn' type='submit' onClick={handleEditSubmit}>
             Edit
           </button>
         </form>
