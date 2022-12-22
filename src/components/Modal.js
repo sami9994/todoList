@@ -26,7 +26,7 @@ const Modal = () => {
                 placeholder='Edit Task Title'
                 minLength='3'
                 maxLength='20'
-                value={taskToEdit.title}
+                value={taskToEdit.title || ''}
                 required
                 onChange={(e) => handleEditChange(e, taskToEdit)}
               />
@@ -41,7 +41,7 @@ const Modal = () => {
                 required
                 className='edit-input'
                 placeholder='Edit Task Content'
-                value={taskToEdit.content}
+                value={taskToEdit.content || ''}
                 onChange={(e) => handleEditChange(e, taskToEdit)}
               />
             </label>

@@ -7,18 +7,9 @@ import { useTodoListContext } from '../contexts/todoListContext'
 import { useAppContext } from '../contexts/appContext'
 import NewTaskForm from './newTaskForm'
 const TodoList = () => {
-  const {
-    task,
-    handleChange,
-    handleSubmit,
-    tasks,
-    editModal,
-    checkBoxToggle,
-    deleteTask,
-  } = useTodoListContext()
+  const { tasks, editModal, checkBoxToggle, deleteTask } = useTodoListContext()
   const { isLoggedIn } = useAppContext()
 
-  console.log(task)
   if (!isLoggedIn) {
     return <h1>please login</h1>
   }
@@ -36,8 +27,8 @@ const TodoList = () => {
             {tasks.map((listItem) => {
               return (
                 <TodoListItem
-                  task={listItem}
                   key={listItem.id}
+                  task={listItem}
                   checkBoxToggle={checkBoxToggle}
                   deleteTask={deleteTask}
                   editModal={editModal}

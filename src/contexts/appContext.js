@@ -4,30 +4,29 @@ import { auth } from '../firebaseConfig'
 const AppContext = React.createContext()
 const AppProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [userName, setUserName] = useState('')
-  const [userId, setUserId] = useState('')
+  const [user, setUser] = useState('')
+
   const provider = new GoogleAuthProvider()
   const signIn = () =>
     signInWithPopup(auth, provider)
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result)
-        const token = credential.accessToken
+        // const token = credential.accessToken
         const user = result.user
-        console.log(user)
+
         if (user.displayName) {
-          setUserName(user.displayName)
+          setUser(user)
           setIsLoggedIn(true)
-          setUserId(user.uid)
         }
       })
       .catch((error) => {
-        const errorCode = error.code
+        // const errorCode = error.code
         const errorMessage = error.message
         // The email of the user's account used.
 
-        console.log(errorMessage)
+        console.log('sign in error ', errorMessage)
       })
-  const signout = () =>
+  const logOut = () =>
     signOut(auth)
       .then(() => {
         // Sign-out successful.
@@ -39,7 +38,7 @@ const AppProvider = ({ children }) => {
       })
   return (
     <AppContext.Provider
-      value={{ isLoggedIn, setIsLoggedIn, signout, signIn, userName, userId }}
+      value={{ isLoggedIn, setIsLoggedIn, logOut, signIn, user }}
     >
       {children}
     </AppContext.Provider>

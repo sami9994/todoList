@@ -1,8 +1,10 @@
 import { useAppContext } from '../contexts/appContext'
 import '../styles/css/header.css'
 const Header = () => {
-  const { isLoggedIn, userName, signout, signIn } = useAppContext()
+  const { isLoggedIn, user, logOut, signIn } = useAppContext()
 
+  const { displayName: userName } = user
+  console.log(user)
   return (
     <div className='header'>
       <h1 className='app-header'>TODO LIST</h1>
@@ -17,10 +19,10 @@ const Header = () => {
         <button
           className='login-btn'
           style={{
-            display: `${isLoggedIn ? 'block' : 'none'}`,
+            display: `${isLoggedIn ? 'inline' : 'none'}`,
             marginLeft: '5px',
           }}
-          onClick={signout}
+          onClick={logOut}
         >
           Logout
         </button>
