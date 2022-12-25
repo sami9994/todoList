@@ -6,6 +6,7 @@ import { useTodoListContext } from '../contexts/todoListContext'
 const Modal = () => {
   const { modal, setModal, taskToEdit, handleEditChange, handleEditSubmit } =
     useTodoListContext()
+  console.log(taskToEdit)
   return (
     <div className='modal' style={{ display: `${modal ? 'block' : 'none'}` }}>
       <FontAwesomeIcon

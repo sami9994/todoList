@@ -4,7 +4,8 @@ const Header = () => {
   const { isLoggedIn, user, logOut, signIn } = useAppContext()
 
   const { displayName: userName } = user
-  console.log(user)
+  // console.log(user
+
   return (
     <div className='header'>
       <h1 className='app-header'>TODO LIST</h1>

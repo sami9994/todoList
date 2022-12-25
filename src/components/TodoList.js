@@ -6,6 +6,7 @@ import Modal from './Modal'
 import { useTodoListContext } from '../contexts/todoListContext'
 import { useAppContext } from '../contexts/appContext'
 import NewTaskForm from './newTaskForm'
+import React from 'react'
 const TodoList = () => {
   const { tasks, editModal, checkBoxToggle, deleteTask } = useTodoListContext()
   const { isLoggedIn } = useAppContext()
@@ -24,10 +25,10 @@ const TodoList = () => {
       <div className='todo-list-body'>
         {tasks.length > 0 ? (
           <section className='todo-list-items'>
-            {tasks.map((listItem) => {
+            {tasks.map((listItem, index) => {
               return (
                 <TodoListItem
-                  key={listItem.id}
+                  key={listItem.fireStoreId}
                   task={listItem}
                   checkBoxToggle={checkBoxToggle}
                   deleteTask={deleteTask}
@@ -43,4 +44,4 @@ const TodoList = () => {
     </>
   )
 }
-export default TodoList
+export default React.memo(TodoList)

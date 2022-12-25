@@ -10,15 +10,15 @@ import {
   query,
   where,
   getDoc,
+  onSnapshot,
+  deleteDoc,
 } from 'firebase/firestore'
 import { useAppContext } from './appContext'
-import { async } from '@firebase/util'
 const TodoListContext = React.createContext()
 const tasksCollectionRef = collection(db, 'tasks')
 const TodoListProvider = ({ children }) => {
   const { user, isLoggedIn } = useAppContext()
   const [task, setTask] = useState({
-    id: uuidv4(),
     title: '',
     content: '',
     done: false,
@@ -43,14 +43,11 @@ const TodoListProvider = ({ children }) => {
   }
   const handleEditSubmit = async (e) => {
     e.preventDefault()
-    const { name, value } = e.target
+
     const docRef = doc(db, 'tasks', taskId)
-    console.log('before', taskToEdit)
-    setTaskToEdit((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
-    console.log('after', taskToEdit)
+
+    updateDoc(docRef, taskToEdit)
+    setModal(false)
   }
 
   const handleChange = ({ target }) => {
@@ -62,42 +59,48 @@ const TodoListProvider = ({ children }) => {
     const { name, value } = target
 
     setTaskToEdit((prev) => ({ ...prev, [name]: value }))
-    console.log(taskToEdit)
   }
 
   const checkBoxToggle = (id) => {
-    const newTasks = tasks.map((item) => {
-      if (id === item.id) {
-        item.done = !item.done
-        return item
-      }
-      return item
+    const docRef = doc(db, 'tasks', id)
+    onSnapshot(docRef, (snapShot) => {
+      setTaskToEdit({ ...snapShot.data(), fireStoreId: snapShot.id })
     })
-    setTasks(newTasks)
+    console.log(taskToEdit)
+
+    updateDoc(docRef, { done: !taskToEdit.done })
   }
   const deleteTask = (id) => {
-    const newTasks = tasks.filter((item) => id !== item.id)
-    setTasks(newTasks)
+    const docRef = doc(db, 'tasks', id)
+    deleteDoc(docRef)
+      .then(() => {
+        console.log('task has been deleted')
+      })
+      .catch((e) => {
+        console.log(e)
+      })
   }
   const editModal = async (id) => {
     setModal(true)
-    // console.log(id)
 
     setTaskId(id)
-    const t = query(tasksCollectionRef, where('id', '==', id)) // const tempTask = tasks.filter((item) => item.id === id)
-    const querySnapshot = await getDocs(t)
-    const arr = querySnapshot.docs.map((item) => item.data())
-    setTaskToEdit(arr[0])
-    // setTaskToEdit(tempTask[0])
-    // console.log(taskToEdit)
+    const docRef = doc(db, 'tasks', id)
+    onSnapshot(docRef, (snapShot) => {
+      setTaskToEdit({ ...snapShot.data(), fireStoreId: snapShot.id })
+    })
   }
 
   const getTasks = async () => {
-    const docs = await getDocs(tasksCollectionRef)
-    let newTasks = docs.docs.map((item) => item.data())
-    setTasks([...newTasks])
+    onSnapshot(tasksCollectionRef, (snapShot) => {
+      let fireTasks = snapShot.docs.map((item) => {
+        return {
+          ...item.data(),
+          fireStoreId: item.id,
+        }
+      })
+      setTasks(fireTasks)
+    })
   }
-
   useEffect(() => {
     if (isLoggedIn) {
       console.log(isLoggedIn)

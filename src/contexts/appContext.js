@@ -1,10 +1,10 @@
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { auth } from '../firebaseConfig'
 const AppContext = React.createContext()
 const AppProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [user, setUser] = useState('')
+  const [user, setUser] = useState({})
 
   const provider = new GoogleAuthProvider()
   const signIn = () =>
@@ -36,6 +36,17 @@ const AppProvider = ({ children }) => {
       .catch((error) => {
         console.log(error)
       })
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user)
+        setIsLoggedIn(true)
+      } else {
+        signOut(auth())
+      }
+    })
+  }, [isLoggedIn])
+
   return (
     <AppContext.Provider
       value={{ isLoggedIn, setIsLoggedIn, logOut, signIn, user }}
