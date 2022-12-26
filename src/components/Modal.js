@@ -2,6 +2,7 @@ import '../styles/css/modal.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { useTodoListContext } from '../contexts/todoListContext'
+import React from 'react'
 
 const Modal = () => {
   const { modal, setModal, taskToEdit, handleEditChange, handleEditSubmit } =
@@ -55,4 +56,4 @@ const Modal = () => {
     </div>
   )
 }
-export default Modal
+export default React.memo(Modal)

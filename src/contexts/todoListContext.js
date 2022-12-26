@@ -1,23 +1,19 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { v4 as uuidv4 } from 'uuid'
+
 import { db } from '../firebaseConfig'
 import {
   collection,
   addDoc,
-  getDocs,
   updateDoc,
   doc,
-  query,
-  where,
-  getDoc,
   onSnapshot,
   deleteDoc,
 } from 'firebase/firestore'
 import { useAppContext } from './appContext'
 const TodoListContext = React.createContext()
-const tasksCollectionRef = collection(db, 'tasks')
 const TodoListProvider = ({ children }) => {
   const { user, isLoggedIn } = useAppContext()
+  const tasksCollectionRef = collection(db, `users/${user.uid}/tasks`)
   const [task, setTask] = useState({
     title: '',
     content: '',
@@ -26,25 +22,25 @@ const TodoListProvider = ({ children }) => {
   const [tasks, setTasks] = useState([])
   const [taskDone, setTaskDone] = useState(false)
   const [modal, setModal] = useState(false)
-  const [taskToEdit, setTaskToEdit] = useState('')
+  const [taskToEdit, setTaskToEdit] = useState({})
   const [taskId, setTaskId] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     console.log(task)
     if (task.content && task.title) {
-      addDoc(tasksCollectionRef, task)
-        .then((res) => console.log('successfully added ', res))
+      addDoc(tasksCollectionRef, { ...task, uid: user.uid })
+        .then((res) => console.log('successfully added '))
         .catch((e) => console.log('error', e))
 
       setTask({ title: '', content: '', done: false })
     } else window.alert('please provide all fields')
     return
   }
-  const handleEditSubmit = async (e) => {
+  const handleEditSubmit = (e) => {
     e.preventDefault()
 
-    const docRef = doc(db, 'tasks', taskId)
+    const docRef = doc(db, `users/${user.uid}/tasks`, taskId)
 
     updateDoc(docRef, taskToEdit)
     setModal(false)
@@ -62,7 +58,7 @@ const TodoListProvider = ({ children }) => {
   }
 
   const checkBoxToggle = (id) => {
-    const docRef = doc(db, 'tasks', id)
+    const docRef = doc(db, `users/${user.uid}/tasks`, id)
     onSnapshot(docRef, (snapShot) => {
       setTaskToEdit({ ...snapShot.data(), fireStoreId: snapShot.id })
     })
@@ -71,7 +67,7 @@ const TodoListProvider = ({ children }) => {
     updateDoc(docRef, { done: !taskToEdit.done })
   }
   const deleteTask = (id) => {
-    const docRef = doc(db, 'tasks', id)
+    const docRef = doc(db, `users/${user.uid}/tasks`, id)
     deleteDoc(docRef)
       .then(() => {
         console.log('task has been deleted')
@@ -82,22 +78,25 @@ const TodoListProvider = ({ children }) => {
   }
   const editModal = async (id) => {
     setModal(true)
-
+    console.log(id)
     setTaskId(id)
-    const docRef = doc(db, 'tasks', id)
+    const docRef = doc(tasksCollectionRef, id)
     onSnapshot(docRef, (snapShot) => {
-      setTaskToEdit({ ...snapShot.data(), fireStoreId: snapShot.id })
+      setTaskToEdit({ ...snapShot.data(), fireStoreId: id })
     })
   }
 
   const getTasks = async () => {
-    onSnapshot(tasksCollectionRef, (snapShot) => {
+    const ref = collection(db, `users/${user.uid}/tasks`)
+    onSnapshot(ref, (snapShot) => {
       let fireTasks = snapShot.docs.map((item) => {
+        // console.log(item.data(), doc.id)
         return {
           ...item.data(),
           fireStoreId: item.id,
         }
       })
+      console.log(fireTasks)
       setTasks(fireTasks)
     })
   }
@@ -111,6 +110,7 @@ const TodoListProvider = ({ children }) => {
     if (isLoggedIn) {
       console.log(isLoggedIn)
       getTasks()
+      console.log(tasks)
     }
   }, [taskDone])
 

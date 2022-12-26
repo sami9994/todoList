@@ -1,13 +1,16 @@
 import '../styles/css/todo-list-item.css'
 const TodoListItems = ({ task, checkBoxToggle, deleteTask, editModal }) => {
-  // console.log(task)
+  console.log(task)
+
   return (
     <div className='item'>
       <section>
         <h3 className='task-title'>{task.title || ''}</h3>
         <p
           className='task-content'
-          style={{ textDecoration: `${task.done ? 'line-through' : 'none'}` }}
+          style={{
+            textDecoration: `${task.done ? 'line-through' : 'none'}`,
+          }}
         >
           {task.content || ''}
         </p>

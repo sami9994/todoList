@@ -1,6 +1,19 @@
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
 import React, { useContext, useEffect, useState } from 'react'
-import { auth } from '../firebaseConfig'
+import { auth, db } from '../firebaseConfig'
+import {
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  doc,
+  query,
+  where,
+  getDoc,
+  onSnapshot,
+  deleteDoc,
+} from 'firebase/firestore'
+
 const AppContext = React.createContext()
 const AppProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -12,10 +25,12 @@ const AppProvider = ({ children }) => {
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result)
         // const token = credential.accessToken
-        const user = result.user
 
-        if (user.displayName) {
-          setUser(user)
+        const userInfo = result.user
+        if (userInfo) {
+          console.log(userInfo)
+          setUser(userInfo)
+
           setIsLoggedIn(true)
         }
       })
@@ -23,7 +38,7 @@ const AppProvider = ({ children }) => {
         // const errorCode = error.code
         const errorMessage = error.message
         // The email of the user's account used.
-
+        console.log(error)
         console.log('sign in error ', errorMessage)
       })
   const logOut = () =>
@@ -42,11 +57,19 @@ const AppProvider = ({ children }) => {
         setUser(user)
         setIsLoggedIn(true)
       } else {
-        signOut(auth())
+        signOut(auth)
       }
     })
   }, [isLoggedIn])
-
+  useEffect(() => {
+    // addDoc(usersRef, user)
+    //   .then((res) => {
+    //     console.log(res)
+    //   })
+    //   .catch((e) => {
+    //     console.log(e)
+    //   })
+  }, [user])
   return (
     <AppContext.Provider
       value={{ isLoggedIn, setIsLoggedIn, logOut, signIn, user }}
