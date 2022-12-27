@@ -41,9 +41,10 @@ const TodoListProvider = ({ children }) => {
     e.preventDefault()
 
     const docRef = doc(db, `users/${user.uid}/tasks`, taskId)
-
-    updateDoc(docRef, taskToEdit)
-    setModal(false)
+    if (taskToEdit.title && taskToEdit.content) {
+      updateDoc(docRef, taskToEdit)
+      setModal(false)
+    }
   }
 
   const handleChange = ({ target }) => {

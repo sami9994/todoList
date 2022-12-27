@@ -1,0 +1,31 @@
+$primary: rgb(255, 255, 255);
+$secondary: rgb(92, 88, 88);
+$orange: rgb(250, 166, 9);
+$black: rgb(0, 0, 0);
+$red: rgb(255, 1, 1);
+$blue: rgb(1, 48, 255);
+$transition: all 1s linear;
+$inspiration-font-family: 'Inspiration', cursive;
+$tablet-width: 768px;
+$phone-width: 766px;
+$desktop-width: 1024px;
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin phone {
+  @media (max-width: #{$phone-width}) {
+    @content;
+  }
+}
+@mixin primaryBg {
+  background: rgb(255, 252, 0);
+  background: linear-gradient(
+    207deg,
+    rgba(255, 252, 0, 1) 37%,
+    rgba(255, 135, 0, 0.8468677494199536) 100%
+  );
+}

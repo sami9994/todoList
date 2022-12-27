@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inspiration&family=Raleway:ital,wght@0,900;1,600&display=swap');
-
+@import './vars';
 * {
   margin: 0;
   padding: 0;
@@ -9,17 +9,12 @@
   display: flex;
   justify-content: space-around;
   align-items: baseline;
-  background: rgb(255, 252, 0);
-  background: linear-gradient(
-    207deg,
-    rgba(255, 252, 0, 1) 37%,
-    rgba(255, 135, 0, 0.8468677494199536) 100%
-  );
+  @include primaryBg;
   height: 10vh;
 
-  color: var(--primary-color);
+  color: $primary;
   .app-header {
-    font-family: var(--inspiration-font-family);
+    font-family: $inspiration-font-family;
 
     width: fit-content;
     height: fit-content;
@@ -32,14 +27,17 @@
     width: 4em;
     max-width: 52px;
     background-color: transparent;
-    color: var(--orange-color);
+    color: $orange;
     border: none;
     cursor: pointer;
-    font-size: large;
-    transition: var(--transition);
+    font-size: 2em;
+    font-family: $inspiration-font-family;
+    transition: $transition;
   }
   .login-btn:hover {
-    color: var(--blue-color);
-    box-shadow: 3px 3px var(--primary-color);
+    color: $primary;
+    box-shadow: 3px 3px $primary;
+    border-radius: 3px;
+    font-weight: bolder;
   }
 } /*# sourceMappingURL=header.css.map */
