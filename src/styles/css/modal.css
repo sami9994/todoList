@@ -68,6 +68,8 @@
 }
 .edit-form-content .inputs .edit-input {
   width: 100%;
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
   min-width: fit-content;
   border: none;
   border-bottom: 2px solid rgb(250, 166, 9);
@@ -77,6 +79,22 @@
 }
 .edit-form-content .inputs .edit-input:focus {
   outline: none;
+}
+.edit-form-content .inputs .edit-input::-moz-placeholder {
+  padding-left: 0.2em;
+  color: rgb(250, 166, 9);
+  font-size: 0.95rem;
+  font-weight: bolder;
+  padding-left: 2px;
+  font-family: "Inspiration", cursive;
+}
+.edit-form-content .inputs .edit-input:-ms-input-placeholder {
+  padding-left: 0.2em;
+  color: rgb(250, 166, 9);
+  font-size: 0.95rem;
+  font-weight: bolder;
+  padding-left: 2px;
+  font-family: "Inspiration", cursive;
 }
 .edit-form-content .inputs .edit-input::placeholder {
   padding-left: 0.2em;
@@ -104,6 +122,8 @@
     padding: 6px;
     border: 2px solid rgb(250, 166, 9);
     width: 98%;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
     height: fit-content;
     max-height: 200px;
     min-width: 150px;
@@ -132,6 +152,8 @@
   }
   .edit-form-content .inputs .edit-input {
     width: 100%;
+    min-width: -webkit-fit-content;
+    min-width: -moz-fit-content;
     min-width: fit-content;
     border: none;
     border-bottom: 2px solid rgb(250, 166, 9);
@@ -141,6 +163,22 @@
   }
   .edit-form-content .inputs .edit-input:focus {
     outline: none;
+  }
+  .edit-form-content .inputs .edit-input::-moz-placeholder {
+    padding-left: 0.2em;
+    color: rgb(250, 166, 9);
+    font-size: 0.5rem;
+    font-weight: bold;
+    padding-left: 1px;
+    font-family: "Inspiration", cursive;
+  }
+  .edit-form-content .inputs .edit-input:-ms-input-placeholder {
+    padding-left: 0.2em;
+    color: rgb(250, 166, 9);
+    font-size: 0.5rem;
+    font-weight: bold;
+    padding-left: 1px;
+    font-family: "Inspiration", cursive;
   }
   .edit-form-content .inputs .edit-input::placeholder {
     padding-left: 0.2em;

@@ -24,21 +24,22 @@
     letter-spacing: 8px;
   }
   .login-btn {
-    width: 4em;
+    margin-left: 10px;
     max-width: 52px;
-    background-color: transparent;
+
     color: $orange;
     border: none;
     cursor: pointer;
-    font-size: 2em;
-    font-family: $inspiration-font-family;
+    font-size: 0.8em;
+    width: 4rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     transition: $transition;
   }
   .login-btn:hover {
     color: $primary;
     box-shadow: 3px 3px $primary;
     border-radius: 3px;
-    font-weight: bolder;
+    font-size: 1em;
   }
 } /*# sourceMappingURL=header.css.map */
 @include phone {

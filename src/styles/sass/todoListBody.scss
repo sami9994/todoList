@@ -1,7 +1,7 @@
 @import './vars';
 .todo-list-body {
   height: 50vh;
-  background-color: red;
+
   width: 70vw;
   margin: 5em auto;
   overflow-y: auto;
@@ -93,7 +93,7 @@
 @include phone {
   .todo-list-body {
     height: fit-content;
-    background-color: red;
+
     width: 98vw;
     margin: 2em auto;
     overflow-x: auto;

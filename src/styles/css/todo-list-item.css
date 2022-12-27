@@ -37,6 +37,8 @@
   border-radius: 5px;
   color: var(--orange-color);
   cursor: pointer;
+  min-width: -webkit-min-content;
+  min-width: -moz-min-content;
   min-width: min-content;
   width: 4em;
   max-width: 70px;
@@ -51,6 +53,8 @@
   border: solid 1px var(--red-color);
   color: var(--red-color);
   cursor: pointer;
+  min-width: -webkit-min-content;
+  min-width: -moz-min-content;
   min-width: min-content;
   width: 4em;
   max-width: 60px;
@@ -62,31 +66,27 @@
   color: var(--primary-color);
 }
 .item .input-btns .checkbox-input {
-  accent-color: var(--orange-color);
+  accent-color: rgb(250, 166, 9);
   color: white;
 }
 
 @media (max-width: 766px) {
   .item {
-    display: flex;
-    flex-direction: column;
-    background-color: antiquewhite;
-    width: 99%;
-    padding: 0px;
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    width: 100%;
   }
   .item .title-content-section {
-    grid-row: 0/-1;
-    grid-column: 0/2;
-    background-color: aqua;
-    width: 100%;
-    border: 2px solid salmon;
+    grid-row: 1/3;
+    grid-column: 1/-1;
+  }
+  .item .title-content-section .task-title {
+    text-align: center;
   }
   .item .input-btns {
-    background-color: blue;
-    width: 100%;
-    align-items: stretch;
-  }
-  .item .input-btns .section-btn {
-    justify-items: end;
+    grid-row: 3/-1;
+    grid-column: 2/3;
+    gap: 5px;
+    margin: 0 auto;
   }
 }/*# sourceMappingURL=todo-list-item.css.map */

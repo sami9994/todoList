@@ -67,35 +67,31 @@
       }
     }
     .checkbox-input {
-      accent-color: var(--orange-color);
+      accent-color: $orange;
       color: white;
     }
   }
 }
 @include phone {
   .item {
-    display: flex;
-    flex-direction: column;
-    background-color: antiquewhite;
-    width: 99%;
+    display: grid;
+    grid-template-rows: 2fr 1fr;
 
-    padding: 0px;
+    width: 100%;
+
     .title-content-section {
-      grid-row: 0/-1;
-      grid-column: 0/2;
-      background-color: aqua;
-      width: 100%;
-      border: 2px solid salmon;
+      grid-row: 1/3;
+      grid-column: 1/-1;
+      .task-title {
+        text-align: center;
+      }
     }
 
     .input-btns {
-      background-color: blue;
-      width: 100%;
-
-      align-items: stretch;
-      .section-btn {
-        justify-items: end;
-      }
+      grid-row: 3/-1;
+      grid-column: 2/3;
+      gap: 5px;
+      margin: 0 auto;
     }
   }
 }

@@ -16,28 +16,32 @@
 }
 .header .app-header {
   font-family: "Inspiration", cursive;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   margin-top: 1em;
   margin-left: 2em;
   letter-spacing: 8px;
 }
 .header .login-btn {
-  width: 4em;
+  margin-left: 10px;
   max-width: 52px;
-  background-color: transparent;
   color: rgb(250, 166, 9);
   border: none;
   cursor: pointer;
-  font-size: 2em;
-  font-family: "Inspiration", cursive;
+  font-size: 0.8em;
+  width: 4rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   transition: all 1s linear;
 }
 .header .login-btn:hover {
   color: rgb(255, 255, 255);
   box-shadow: 3px 3px rgb(255, 255, 255);
   border-radius: 3px;
-  font-weight: bolder;
+  font-size: 1em;
 }
 
 /*# sourceMappingURL=header.css.map */
@@ -53,7 +57,11 @@
   }
   .header .app-header {
     font-family: "Inspiration", cursive;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
     width: fit-content;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
     height: fit-content;
     margin-top: 1em;
     font-size: 1.2em;
@@ -69,7 +77,11 @@
   }
   .header .login-btn {
     font-weight: bold;
+    min-width: -webkit-fit-content;
+    min-width: -moz-fit-content;
     min-width: fit-content;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
     width: fit-content;
     max-width: 40px;
     background-color: transparent;
