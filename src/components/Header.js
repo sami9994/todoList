@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <div className='header'>
       <h1 className='app-header'>TODO LIST</h1>
-      <section>
+      <section className='btns-section'>
         <button
           className='login-btn'
           onClick={signIn}
