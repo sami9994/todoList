@@ -6,7 +6,7 @@ const NewTaskForm = React.memo(() => {
   const { title, content } = task
   return (
     <form className='form-content'>
-      <section>
+      <section className='new-tasks-inputs-section'>
         <label htmlFor='taskTitle'>
           <input
             type='text'
