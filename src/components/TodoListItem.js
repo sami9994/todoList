@@ -4,7 +4,7 @@ const TodoListItems = ({ task, checkBoxToggle, deleteTask, editModal }) => {
 
   return (
     <div className='item'>
-      <section>
+      <section className='title-content-section'>
         <h3 className='task-title'>{task.title || ''}</h3>
         <p
           className='task-content'

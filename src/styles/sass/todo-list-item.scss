@@ -1,3 +1,4 @@
+@import './vars';
 .item {
   font-size: 16px;
   display: grid;
@@ -68,6 +69,33 @@
     .checkbox-input {
       accent-color: var(--orange-color);
       color: white;
+    }
+  }
+}
+@include phone {
+  .item {
+    display: flex;
+    flex-direction: column;
+    background-color: antiquewhite;
+    width: 99%;
+
+    padding: 0px;
+    .title-content-section {
+      grid-row: 0/-1;
+      grid-column: 0/2;
+      background-color: aqua;
+      width: 100%;
+      border: 2px solid salmon;
+    }
+
+    .input-btns {
+      background-color: blue;
+      width: 100%;
+
+      align-items: stretch;
+      .section-btn {
+        align-items: flex-end;
+      }
     }
   }
 }

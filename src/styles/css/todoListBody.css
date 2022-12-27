@@ -85,6 +85,18 @@
 }
 
 @media (max-width: 766px) {
+  .todo-list-body {
+    height: fit-content;
+    background-color: red;
+    width: 98vw;
+    margin: 2em auto;
+    overflow-x: auto;
+  }
+  .todo-list-body .todo-list-items {
+    width: 90%;
+    margin: auto;
+    height: auto;
+  }
   .new-task-section {
     display: flex;
     flex-direction: column;
