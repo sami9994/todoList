@@ -87,6 +87,6 @@
     align-items: stretch;
   }
   .item .input-btns .section-btn {
-    align-items: flex-end;
+    justify-items: end;
   }
 }/*# sourceMappingURL=todo-list-item.css.map */
