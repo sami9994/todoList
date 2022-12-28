@@ -1,18 +1,6 @@
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
 import React, { useContext, useEffect, useState } from 'react'
-import { auth, db } from '../firebaseConfig'
-import {
-  collection,
-  addDoc,
-  getDocs,
-  updateDoc,
-  doc,
-  query,
-  where,
-  getDoc,
-  onSnapshot,
-  deleteDoc,
-} from 'firebase/firestore'
+import { auth } from '../firebaseConfig'
 
 const AppContext = React.createContext()
 const AppProvider = ({ children }) => {
@@ -23,9 +11,6 @@ const AppProvider = ({ children }) => {
   const signIn = () =>
     signInWithPopup(auth, provider)
       .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result)
-        // const token = credential.accessToken
-
         const userInfo = result.user
         if (userInfo) {
           console.log(userInfo)

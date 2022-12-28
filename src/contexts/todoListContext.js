@@ -20,7 +20,7 @@ const TodoListProvider = ({ children }) => {
     done: false,
   })
   const [tasks, setTasks] = useState([])
-  const [taskDone, setTaskDone] = useState(false)
+  // const [taskDone, setTaskDone] = useState(false)
   const [modal, setModal] = useState(false)
   const [taskToEdit, setTaskToEdit] = useState({})
   const [taskId, setTaskId] = useState('')
@@ -106,13 +106,13 @@ const TodoListProvider = ({ children }) => {
       getTasks()
     }
   }, [isLoggedIn])
-  useEffect(() => {
-    if (isLoggedIn) {
-      console.log(isLoggedIn)
-      getTasks()
-      console.log(tasks)
-    }
-  }, [taskDone])
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     console.log(isLoggedIn)
+  //     getTasks()
+  //     console.log(tasks)
+  //   }
+  // }, [taskDone])
 
   return (
     <TodoListContext.Provider
