@@ -1,7 +1,6 @@
+import React from 'react'
 import '../styles/css/todo-list-item.css'
 const TodoListItems = ({ task, checkBoxToggle, deleteTask, editModal }) => {
-  console.log(task)
-
   return (
     <div className='item'>
       <section className='title-content-section'>
@@ -40,4 +39,4 @@ const TodoListItems = ({ task, checkBoxToggle, deleteTask, editModal }) => {
     </div>
   )
 }
-export default TodoListItems
+export default React.memo(TodoListItems)

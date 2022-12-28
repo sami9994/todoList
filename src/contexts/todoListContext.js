@@ -103,7 +103,6 @@ const TodoListProvider = ({ children }) => {
   }
   useEffect(() => {
     if (isLoggedIn) {
-      console.log(isLoggedIn)
       getTasks()
     }
   }, [isLoggedIn])
