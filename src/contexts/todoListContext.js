@@ -27,7 +27,6 @@ const TodoListProvider = ({ children }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(task)
     if (task.content && task.title) {
       addDoc(tasksCollectionRef, { ...task, uid: user.uid })
         .then((res) => console.log('successfully added '))
@@ -105,6 +104,7 @@ const TodoListProvider = ({ children }) => {
     if (isLoggedIn) {
       getTasks()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn])
   // useEffect(() => {
   //   if (isLoggedIn) {

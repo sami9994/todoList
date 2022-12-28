@@ -13,7 +13,6 @@ const AppProvider = ({ children }) => {
       .then((result) => {
         const userInfo = result.user
         if (userInfo) {
-          console.log(userInfo)
           setUser(userInfo)
 
           setIsLoggedIn(true)
@@ -23,7 +22,6 @@ const AppProvider = ({ children }) => {
         // const errorCode = error.code
         const errorMessage = error.message
         // The email of the user's account used.
-        console.log(error)
         console.log('sign in error ', errorMessage)
       })
   const logOut = () =>
